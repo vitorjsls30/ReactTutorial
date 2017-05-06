@@ -22,6 +22,9 @@ export default class Nav extends React.Component {
                       <li>
                           <a href="/#/settings">Settings</a>
                       </li>
+                      <li>
+                          <a href="/#/spendings">Spendings</a>
+                      </li>
                   </ul>
               </div>
           </div>

@@ -20,8 +20,8 @@ export default class Archives extends React.Component {
     return (
       <div class="col-md-8">
           <h1 class="page-header">
-              Page Heading
-              <small>Secondary Text</small>
+            Archives &nbsp;
+            <small>Read all our main articles right bellow Text</small>
           </h1>
 
           {Articles}
