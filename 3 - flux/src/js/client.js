@@ -7,6 +7,7 @@ import Featured from './pages/Featured';
 import Layout from './pages/Layout';
 import Settings from './pages/Settings';
 import Spendings from './pages/Spendings'
+import Todos from './pages/Todos';
 
 const app = document.getElementById('app');
 
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route path="archives(/:article)" name="archives" component={Archives}></Route>
       <Route path="settings" name="settings" component={Settings}></Route>
       <Route path="spendings" name="spendings" component={Spendings}></Route>
+      <Route path="todos" name="todos" component={Todos}></Route>
     </Route>
   </Router>
 , app);
