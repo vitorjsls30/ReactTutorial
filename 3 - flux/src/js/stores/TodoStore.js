@@ -37,6 +37,13 @@ class TodoStore extends EventEmitter {
       case "CREATE_TODO": {
         this.createTodo(action.text);
       }
+      case "FETCH_TODOS": {
+        console.log('RECEIVED FETCH_TODOS');
+      }
+      case "RECEIVE_TODOS" : {
+        this.todos = action.todos;
+        this.emit('change');
+      }
     }
   }
 }
