@@ -8,6 +8,9 @@ const userReducer = (state={}, action) => {
       state = {...state, age: action.payload};
       break;
     }
+    case 'USER_ERROR': {
+      throw new Error('OMG!!!');
+    }
   }
   return state;
 };
