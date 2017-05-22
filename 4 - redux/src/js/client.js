@@ -1,10 +1,8 @@
 import {applyMiddleware, createStore} from 'redux';
 import {reducers} from './reducers';
-
-const logger = (store) => (next) => (action) => {
-  console.log('action fired: ', action);
-  next(action);
-}
+import {createLogger} from 'redux-logger';
+import thunk from 'redux-thunk';
+import axios from 'axios';
 
 const error = (store) => (next) => (action) => {
   try {
@@ -14,15 +12,16 @@ const error = (store) => (next) => (action) => {
   }
 }
 
-const middleware = applyMiddleware(logger, error);
-
+const middleware = applyMiddleware(thunk, createLogger());
 const store = createStore(reducers, middleware);
 
-store.subscribe(() => {
-  console.log('Store changed ', store.getState());
+store.dispatch((dispatch) => {
+  dispatch({type: 'FETCH_USERS_START'});
+  axios.get('http://rest.learndfsdgsdgcode.academy/api/learncode/friends')
+  .then((response) => {
+    dispatch({type: 'RECEIVE_USERS', payload: response.data})
+  })
+  .catch((err) => {
+    dispatch({type: 'FETCH_USERS_ERROR', payload: err});
+  });
 });
-
-store.dispatch({type: 'CHANGE_NAME', payload: 'Vitor José'});
-store.dispatch({type: 'CHANGE_AGE', payload: 28});
-store.dispatch({type: 'CHANGE_AGE', payload: 29});
-store.dispatch({type: 'USER_ERROR'});
