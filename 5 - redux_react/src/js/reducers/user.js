@@ -1,36 +1,33 @@
 const userReducer = (state={
+  user: {
+    id: null,
+    name: null,
+    age: null
+  },
   fetching: false,
   fetched: false,
   users: [],
   error: null
 }, action) => {
   switch (action.type) {
-    case 'CHANGE_NAME': {
-      state = {...state, name: action.payload};
-      break;
-    }
-    case 'CHANGE_AGE': {
-      state = {...state, age: action.payload};
-      break;
-    }
-    case 'USER_ERROR': {
-      throw new Error('OMG!!!');
-    }
-    case 'FETCH_USERS_START': {
+    case 'FETCH_USER': {
       return {...state, fetching: true};
-      break;
     }
-    case 'FETCH_USERS_ERROR': {
+    case 'FETCH_USERS_REJECTED': {
       return {...state, fetching: false, error: action.payload};
-      break;
     }
-    case 'RECEIVE_USERS': {
+    case 'FETCH_USER_FULFILLED': {
       return {...state,
         fetching: false,
         fetched: true,
         users: action.payload
       };
-      break;
+    }
+    case 'SET_USER_NAME': {
+      return state = {...state, name: action.payload};
+    }
+    case 'SET_USER_AGE': {
+      return state = {...state, age: action.payload};
     }
   }
   return state;
