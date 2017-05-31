@@ -6,7 +6,6 @@ const userReducer = (state={
   },
   fetching: false,
   fetched: false,
-  users: [],
   error: null
 }, action) => {
   switch (action.type) {
@@ -17,10 +16,12 @@ const userReducer = (state={
       return {...state, fetching: false, error: action.payload};
     }
     case 'FETCH_USER_FULFILLED': {
+      console.log('payload...');
+      console.log(action.payload);
       return {...state,
         fetching: false,
         fetched: true,
-        users: action.payload
+        user: action.payload
       };
     }
     case 'SET_USER_NAME': {

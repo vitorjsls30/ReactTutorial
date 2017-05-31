@@ -3,7 +3,7 @@ const tweetsReducer = (state={
   fetching: false,
   fetched: false,
   error: null
-}, actions) => {
+}, action) => {
   switch (action.type) {
     case 'FETCH_TWEETS': {
       return {...state, fetching: true}
